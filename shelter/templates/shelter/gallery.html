@@ -1,0 +1,23 @@
+{% extends 'shelter/main.html' %}
+{% block content %}
+
+<div class="app">
+    <div class="container drop-shadow">
+        <h1 class="h1 text-center">Galeria zwierzaków</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+        {% for animal in animals_list %}
+          <div class="col-md-4">
+            <div class="card drop-shadow text-center">
+              <img src="{{ animal.image }}" class="img-responsive img-thumbnail align-self-center" width="304" height="236"/>
+              <p class='h3'><a href="{{animal.link}}" class="a-animal" target="_blank">{{animal.name}}</a></p>
+            </div>
+           </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

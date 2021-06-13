@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Schronisko</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="drop-shadow">
+    <div class="mt-5 brand">
+        Adoptuj zwierzaka
+        <img src="{% static 'images/paws.png' %}" width="60px">
+    </div>
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light drop-shadow">
+    <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/paws.png' %}" width="30px"></a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav mr-auto mt-2 mt-lg-0">
+            {% url 'home' as url %}
+            <a class="nav-item nav-link {% if request.path == url %}active{% endif %}" href="{{ url }}">Home</a>
+            {% url 'gallery' as url %}
+            <a Galeria class="nav-item nav-link {% if request.path == url %}active{% endif %}" href="{{ url }}">Galeria</a>
+            {% url 'stats' as url %}
+            <a Galeria class="nav-item nav-link {% if request.path == url %}active{% endif %}" href="{{ url }}">Statystyki</a>
+        </div>
+    </div>
+</nav>
+
+{% block content %}
+{% endblock %}
+<footer>
+    <div class="container drop-shadow text-center footer">
+        <p>Projekt naszej strony dla schroniska</p>
+    </div>
+</footer>
+
+</body>
+</html>

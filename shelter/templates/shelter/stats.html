@@ -1,0 +1,61 @@
+{% extends 'shelter/main.html' %}
+{% block content %}
+
+<div class="app">
+    <div class="container drop-shadow">
+        <h1 class="h1 text-center">Statystyki zwierzaków</h1>
+    </div>
+
+    <div class="container drop-shadow">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Zwierzaków</th>
+                    <th scope="col">Liczba</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in stats_a %}  
+                <tr>
+                    <td>{{key}}</td>
+                    <td>{{value}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container drop-shadow text-center card">
+        <div class="align-self-center">
+            {{ graph_a|safe }}
+        </div>
+    </div>
+
+    <div class="container drop-shadow">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Wielkość</th>
+                    <th scope="col">Liczba</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in stats_s %}  
+                <tr>
+                    <td>{{key}}</td>
+                    <td>{{value}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container drop-shadow text-center card">
+        <div class="align-self-center">
+            {{ graph_s|safe }}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
