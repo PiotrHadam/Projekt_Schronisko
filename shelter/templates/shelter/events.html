@@ -1,0 +1,30 @@
+{% extends 'shelter/main.html' %}
+{% block content %}
+
+<div class="app">
+    <div class="container drop-shadow">
+        <h1 class="h1 text-center">Wydarzenia</h1>
+    </div>
+
+    <div class="container drop-shadow">
+        <div class="accordion" id="accordion">
+        {% for x in events %}
+        <div class="card">
+            <div class="card-header" id={{x.htmlID}}>
+                <h3 class="mb-0">
+                    {{x.event}}
+                </h3>
+            </div>
+            <div class="card-body">
+                {% autoescape off %}
+                {{ x.content }}
+                {% endautoescape %}
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

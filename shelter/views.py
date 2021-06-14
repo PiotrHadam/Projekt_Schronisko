@@ -14,3 +14,7 @@ def stats_page(request):
     graph_a = animals_graph()
     graph_s = sizes_graph()
     return render(request, 'shelter/stats.html', {'stats_a': stats_a, 'stats_s': stats_s, 'graph_a': graph_a, 'graph_s': graph_s})
+
+def events_page(request):
+    events = get_events()
+    return render(request, 'shelter/events.html', {'events': events})

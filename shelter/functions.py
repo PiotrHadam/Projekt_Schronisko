@@ -73,3 +73,35 @@ def sizes_graph():
 
     data = imgdata.getvalue()
     return data
+
+class Event:
+    def __init__(self, event="", link="", content='', htmlID="", tagID=""):
+        self.event = event
+        self.link = link
+        self.content = content
+        self.htmlID = htmlID
+        self.tagID = tagID
+    def __str__(self):
+        return f'Wydarzenie {self.event} pod linkiem {self.link}: \n {self.text}'
+
+def get_events():
+    events = []
+    summary = []
+    with urlopen('https://www.psitulmnie.pl/aktualnosci.php') as response:
+        soup = BeautifulSoup(response, 'html.parser')
+        counter = 0
+        for x in soup.select('.col-md-push-3 .panel .panel-body .panel-group .panel'):
+            ev = Event()
+            counter += 1
+            if 'Schroniskowe wiadomości' not in x.find('a').get_text():
+                ev.event = x.find('a').get_text()
+                ev.link = x.find('a').get('href')
+                t = ""
+                for i in x.select('.panel-collapse .panel-body'):
+                    t += str(i)
+                ev.content = t
+                ev.htmlID = "id" + str(counter)
+                ev.tagID = ev.link[1:]
+                events.append(ev)
+
+    return events

@@ -25,7 +25,9 @@
             {% url 'gallery' as url %}
             <a Galeria class="nav-item nav-link {% if request.path == url %}active{% endif %}" href="{{ url }}">Galeria</a>
             {% url 'stats' as url %}
-            <a Galeria class="nav-item nav-link {% if request.path == url %}active{% endif %}" href="{{ url }}">Statystyki</a>
+            <a Statystyki class="nav-item nav-link {% if request.path == url %}active{% endif %}" href="{{ url }}">Statystyki</a>
+            {% url 'events' as url %}
+            <a Wydarzenia class="nav-item nav-link {% if request.path == url %}active{% endif %}" href="{{ url }}">Wydarzenia</a>
         </div>
     </div>
 </nav>
