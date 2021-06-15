@@ -9,16 +9,19 @@
     <div class="container drop-shadow">
         <div class="accordion" id="accordion">
         {% for x in events %}
-        <div class="card">
-            <div class="card-header" id={{x.htmlID}}>
-                <h3 class="mb-0">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="{{x.htmlID}}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="{{x.link}}" aria-expanded="false" aria-controls="{{x.tagID}}">
                     {{x.event}}
-                </h3>
-            </div>
-            <div class="card-body">
-                {% autoescape off %}
-                {{ x.content }}
-                {% endautoescape %}
+                </button>
+            </h2>
+
+            <div id="{{x.tagID}}" class="accordion-collapse collapse" aria-labelledby="{{x.htmlID}}" data-bs-parent="#accordion">
+                <div class="acoordion-body">
+                    {% autoescape off %}
+                        {{ x.content }}
+                    {% endautoescape %}
+                </div>
             </div>
         </div>
         {% endfor %}
