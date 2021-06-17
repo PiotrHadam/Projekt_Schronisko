@@ -37,7 +37,6 @@ def get_stats():
     return stats_a, stats_s
 
 def animals_graph():
-
     stats_a = get_stats()[0]
     x = []
     y = []
@@ -56,7 +55,6 @@ def animals_graph():
     return data
 
 def sizes_graph():
-
     stats_s = get_stats()[1]
     x = []
     y = []
@@ -74,6 +72,23 @@ def sizes_graph():
     data = imgdata.getvalue()
     return data
 
+def names_graph():
+    names = {}
+    for a in get_animals():
+        if a.name[:1] not in names.keys():
+            names[a.name[:1]] = 0
+        names[a.name[:1]] += 1
+
+    fig = plt.figure()
+    plt.bar(names.keys(), names.values(), color="#d6a984")
+
+    imgdata = StringIO()
+    fig.savefig(imgdata, format='svg')
+    imgdata.seek(0)
+
+    data = imgdata.getvalue()
+    return data
+        
 class Event:
     def __init__(self, event="", link="", content='', htmlID="", tagID=""):
         self.event = event
