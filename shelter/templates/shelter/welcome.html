@@ -5,6 +5,26 @@
     <div class="container drop-shadow">
         <h1 class="h1 text-center">Znajdź zwierzaka dla siebie spośród podopiecznych schroniska w Zabrzu.</h1>
     </div>
+    <div class="container drop-shadow text-center footer">
+        <div class = "flex-main">
+            <div class = "title">
+                <p>{{ title }}</p>
+                <img src="{{ logo }}" class="img-responsive img-thumbnail align-self-center" width="104" height="104"/>
+            </div>
+            <div class = "address"></div>
+            <div class = "hours"></div>
+            <div class = "social"></div>
+        </div>
+        
+
+        <p>{% autoescape off %}
+            {{ address }}
+            {% endautoescape %}
+        </p>
+
+        
+        
+    </div>
 </div>
 
 

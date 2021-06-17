@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from .functions import *
 
 def home_page(request):
-    return render(request, 'shelter/welcome.html', {})
+    contact = get_contact()
+    return render(request, 'shelter/welcome.html', {'logo': contact.logo, 'address': contact.address, 
+    'social': contact.social, 'title': contact.title})
 
 def gallery(request):
     animals = get_animals()

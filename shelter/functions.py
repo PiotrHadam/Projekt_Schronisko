@@ -105,3 +105,39 @@ def get_events():
                 events.append(ev)
 
     return events
+
+class Contact:
+    def __init__(self, logo="", address="", social="", title=""):
+        self.logo = logo
+        self.address = address
+        self.social = social
+        self.title = title
+
+def get_contact():
+    panels = []
+    with urlopen('https://www.psitulmnie.pl/kontakt.php') as response:
+            soup = BeautifulSoup(response, 'html.parser')
+            for x in soup.select('.panel .panel-body'):
+                panels.append(x)
+
+    contact = Contact()
+
+    for i in panels[2]:
+        contact.logo = "https://www.psitulmnie.pl" + panels[2].find('img').get('src')
+
+        titles = panels[2].find_all('b')
+        contact.title = titles[0].get_text()
+        #address = titles[1].get_text()
+
+        if panels[2].find('img') != i:
+
+            for word in str(i).split():
+                if word == ' Zabrze':
+                    break
+                else:
+                    contact.title += word
+
+                    
+            contact.address += str(i)
+            
+    return contact
