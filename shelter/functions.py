@@ -122,11 +122,14 @@ def get_events():
     return events
 
 class Contact:
-    def __init__(self, logo="", address="", social="", title=""):
+    def __init__(self, logo="", address="", email="", title="", facebook1="", facebook2="", hours=""):
         self.logo = logo
         self.address = address
-        self.social = social
+        self.email = email
         self.title = title
+        self.facebook1 = facebook1
+        self.facebook2 = facebook2
+        self.hours = hours
 
 def get_contact():
     panels = []
@@ -136,23 +139,39 @@ def get_contact():
                 panels.append(x)
 
     contact = Contact()
+    canContinueAddress = True
+    canContinueTitle = True
+    canContinueHours = True
 
     for i in panels[2]:
         contact.logo = "https://www.psitulmnie.pl" + panels[2].find('img').get('src')
 
-        titles = panels[2].find_all('b')
-        contact.title = titles[0].get_text()
+        #titles = panels[2].find_all('b')
+        #contact.title = titles[0].get_text()
+
         #address = titles[1].get_text()
+
+        contact.email = panels[2].find('a').get_text()
+        links = [a['href'] for a in panels[2].find_all('a', href=True) if a.text]
+        contact.facebook1 = links[1]
+        contact.facebook2 = links[2]
+        #dojazd = "https://www.psitulmnie.pl" + links[3]
+        #formularz = "https://www.psitulmnie.pl" + links[4]
 
         if panels[2].find('img') != i:
 
-            for word in str(i).split():
-                if word == ' Zabrze':
-                    break
-                else:
-                    contact.title += word
-
-                    
-            contact.address += str(i)
+            if str(i)!="<b>Adres schroniska:</b>" and canContinueTitle:
+                contact.title += str(i)
+            elif str(i)!="Godziny otwarcia:" and canContinueAddress and not canContinueTitle:
+                contact.address += str(i)
+            elif str(i)=="Godziny otwarcia:":
+                canContinueAddress = False
+            elif "Email" not in str(i) and canContinueHours and not canContinueAddress and not canContinueTitle:
+                contact.hours += str(i)
+            elif "Email" in str(i):
+                canContinueHours = False
+            else:
+                canContinueTitle = False
+            
             
     return contact

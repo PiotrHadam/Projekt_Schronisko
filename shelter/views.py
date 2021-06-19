@@ -5,7 +5,8 @@ from .functions import *
 def home_page(request):
     contact = get_contact()
     return render(request, 'shelter/welcome.html', {'logo': contact.logo, 'address': contact.address, 
-    'social': contact.social, 'title': contact.title})
+    'email': contact.email, 'title': contact.title, 'facebook1': contact.facebook1, 
+    'facebook2': contact.facebook2, 'hours': contact.hours})
 
 def gallery(request):
     animals = get_animals()

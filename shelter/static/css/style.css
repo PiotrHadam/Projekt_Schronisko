@@ -55,3 +55,9 @@ header{
 .a-animal:hover {
     color: black;
 }
+
+.flex-main{
+    display: flex;
+    flex-wrap: nowrap;
+    text-align: center;
+}

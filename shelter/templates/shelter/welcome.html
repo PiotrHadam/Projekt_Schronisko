@@ -7,21 +7,39 @@
     </div>
     <div class="container drop-shadow text-center footer">
         <div class = "flex-main">
-            <div class = "title">
-                <p>{{ title }}</p>
+            
+            <div class = "info">
+                {% autoescape off %}
+                {{ title }}
+                {% endautoescape %}
+            </div>
+            <div class = "logo">
+                <!--<p>{{ title }}</p>-->
                 <img src="{{ logo }}" class="img-responsive img-thumbnail align-self-center" width="104" height="104"/>
             </div>
-            <div class = "address"></div>
-            <div class = "hours"></div>
-            <div class = "social"></div>
+            <div class = "address">
+                <p>Adres schroniska:
+                    {% autoescape off %}
+                    {{ address }}
+                    {% endautoescape %}
+                </p>
+                
+            </div>
+            <div class = "hours">
+                <p>Godziny otwarcia:
+                    {% autoescape off %}
+                    {{ hours }}
+                    {% endautoescape %}
+                </p>
+                
+            </div>
+            <div class="social">
+                <p>Adres e-mail: {{ email }}</p>
+                <p>Linki z Facebooka:</p>
+                <a href="{{ facebook1 }}">{{ facebook1 }}</a>
+                <a href="{{ facebook2 }}">{{ facebook2 }}</a>
+            </div>
         </div>
-        
-
-        <p>{% autoescape off %}
-            {{ address }}
-            {% endautoescape %}
-        </p>
-
         
         
     </div>
