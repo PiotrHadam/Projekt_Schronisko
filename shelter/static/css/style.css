@@ -56,12 +56,16 @@ header{
     color: black;
 }
 
-.flex-main{
+.flex-main, .collage{
     display: flex;
     flex-wrap: wrap;
     text-align: center;
     justify-content: center;
     
+}
+
+.collage img {
+    margin-top: 2%;
 }
 
 .flex-main > div{
@@ -72,4 +76,9 @@ header{
 
 .flex-main h3{
     display: inline;
+}
+
+.flex-main a{
+    color:darkcyan;
+    text-decoration: none;
 }

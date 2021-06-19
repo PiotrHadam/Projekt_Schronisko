@@ -6,7 +6,9 @@ def home_page(request):
     contact = get_contact()
     return render(request, 'shelter/welcome.html', {'logo': contact.logo, 'address': contact.address, 
     'email': contact.email, 'title': contact.title, 'facebook1': contact.facebook1, 
-    'facebook2': contact.facebook2, 'hours': contact.hours})
+    'facebook2': contact.facebook2, 'hours': contact.hours, 
+    'photoCollage1': contact.collage[0], 'photoCollage2': contact.collage[1], 'photoCollage3': contact.collage[2],
+    'photoCollage4': contact.collage[3], 'photoCollage5': contact.collage[4]})
 
 def gallery(request):
     animals = get_animals()

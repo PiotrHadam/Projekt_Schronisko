@@ -122,7 +122,7 @@ def get_events():
     return events
 
 class Contact:
-    def __init__(self, logo="", address="", email="", title="", facebook1="", facebook2="", hours=""):
+    def __init__(self, logo="", address="", email="", title="", facebook1="", facebook2="", hours="", collage=[]):
         self.logo = logo
         self.address = address
         self.email = email
@@ -130,6 +130,7 @@ class Contact:
         self.facebook1 = facebook1
         self.facebook2 = facebook2
         self.hours = hours
+        self.collage = collage
 
 def get_contact():
     panels = []
@@ -141,6 +142,14 @@ def get_contact():
                 panels.append(x)
 
             contact.logo = "https://www.psitulmnie.pl" + soup.find('img', {'class': 'img-responsive'}).get('src')
+
+            nicePhotos = soup.select('img', {'class': 'nicephotos'})
+
+            for i in range(1,6):
+                contact.collage.append("https://www.psitulmnie.pl" + nicePhotos[i].get('src'))
+            
+            
+
 
     canContinueAddress = True
     canContinueTitle = True
