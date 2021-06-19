@@ -58,6 +58,18 @@ header{
 
 .flex-main{
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     text-align: center;
+    justify-content: center;
+    
+}
+
+.flex-main > div{
+    margin: 2%;
+    /*flex-basis: 100%;*/
+    max-width: 25%;
+}
+
+.flex-main h3{
+    display: inline;
 }

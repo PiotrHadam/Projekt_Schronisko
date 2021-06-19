@@ -133,21 +133,24 @@ class Contact:
 
 def get_contact():
     panels = []
+    contact = Contact()
+
     with urlopen('https://www.psitulmnie.pl/kontakt.php') as response:
             soup = BeautifulSoup(response, 'html.parser')
             for x in soup.select('.panel .panel-body'):
                 panels.append(x)
 
-    contact = Contact()
+            contact.logo = "https://www.psitulmnie.pl" + soup.find('img', {'class': 'img-responsive'}).get('src')
+
     canContinueAddress = True
     canContinueTitle = True
     canContinueHours = True
 
     for i in panels[2]:
-        contact.logo = "https://www.psitulmnie.pl" + panels[2].find('img').get('src')
+        #contact.logo = "https://www.psitulmnie.pl" + panels[2].find('img').get('src')
 
         #titles = panels[2].find_all('b')
-        #contact.title = titles[0].get_text()
+        #contact.shelterName = titles[0].get_text()
 
         #address = titles[1].get_text()
 
@@ -157,6 +160,7 @@ def get_contact():
         contact.facebook2 = links[2]
         #dojazd = "https://www.psitulmnie.pl" + links[3]
         #formularz = "https://www.psitulmnie.pl" + links[4]
+
 
         if panels[2].find('img') != i:
 

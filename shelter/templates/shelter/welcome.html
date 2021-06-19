@@ -6,37 +6,40 @@
         <h1 class="h1 text-center">Znajdź zwierzaka dla siebie spośród podopiecznych schroniska w Zabrzu.</h1>
     </div>
     <div class="container drop-shadow text-center footer">
+        <!--<h3>{{ shelterName }}</h3>-->
+        <img src="{{ logo }}" class="img-responsive img-thumbnail align-self-center" style="border: 0;width: 30%;"/>
+
         <div class = "flex-main">
             
             <div class = "info">
+                <h3>Informacje:</h3><br>
                 {% autoescape off %}
                 {{ title }}
                 {% endautoescape %}
             </div>
-            <div class = "logo">
-                <!--<p>{{ title }}</p>-->
-                <img src="{{ logo }}" class="img-responsive img-thumbnail align-self-center" width="104" height="104"/>
-            </div>
+
             <div class = "address">
-                <p>Adres schroniska:
+                <h3>Adres schroniska:</h3>
                     {% autoescape off %}
                     {{ address }}
                     {% endautoescape %}
-                </p>
+                
                 
             </div>
             <div class = "hours">
-                <p>Godziny otwarcia:
+                <h3>Godziny otwarcia:</h3>
                     {% autoescape off %}
                     {{ hours }}
                     {% endautoescape %}
-                </p>
+                
                 
             </div>
             <div class="social">
+                <h3>Kontakt:</h3>
                 <p>Adres e-mail: {{ email }}</p>
-                <p>Linki z Facebooka:</p>
-                <a href="{{ facebook1 }}">{{ facebook1 }}</a>
+                <a>Linki z Facebooka:</a><br>
+                
+                <a href="{{ facebook1 }}">{{ facebook1 }}</a><br>
                 <a href="{{ facebook2 }}">{{ facebook2 }}</a>
             </div>
         </div>
