@@ -3,6 +3,7 @@ from urllib.request import urlopen
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
 from io import StringIO
 import numpy as np
 
@@ -42,10 +43,36 @@ def animals_graph():
     y = []
     for i in range(len(stats_a)):
         x.append(stats_a[i][0])
-        y.append(float(stats_a[i][1]))
+        y.append(int(stats_a[i][1]))
 
-    fig = plt.figure()
-    plt.bar(x,y, color="#d6a984")
+    rcParams['font.family'] = 'sans-serif'
+    rcParams['font.sans-serif'] = ['Gill Sans']
+    rcParams['font.size'] = 14
+        
+    fig, ax = plt.subplots(figsize=(10,7))
+        
+    plt.bar(x, y, color="#d6a984")
+    
+    for s in ['top','bottom','left','right']:
+        ax.spines[s].set_visible(False)
+        
+    ax.xaxis.set_ticks_position('none')
+    ax.yaxis.set_ticks_position('none')
+        
+    ax.xaxis.set_tick_params(pad=5)
+    ax.yaxis.set_tick_params(pad=5)
+    
+    ax.grid(b=True, color='grey', linestyle='-.', linewidth=0.5, alpha=0.2)
+    
+    rects = ax.patches
+
+    for rect, label in zip(rects, y):
+        height = rect.get_height()
+        ax.text(rect.get_x() + rect.get_width() / 2, height, label, ha='center', va='bottom')
+
+    ax.set_title('Liczba zwierząt w zależności od rodzaju', pad=10)
+    ax.set_xlabel('Rodzaj zwierzaka')
+    ax.set_ylabel('Liczba zwierząt')
 
     imgdata = StringIO()
     fig.savefig(imgdata, format='svg')
@@ -60,10 +87,36 @@ def sizes_graph():
     y = []
     for i in range(len(stats_s)):
         x.append(stats_s[i][0])
-        y.append(float(stats_s[i][1]))
+        y.append(int(stats_s[i][1]))
 
-    fig = plt.figure()
-    plt.bar(x,y, color="#d6a984")
+    rcParams['font.family'] = 'sans-serif'
+    rcParams['font.sans-serif'] = ['Gill Sans']
+    rcParams['font.size'] = 14
+        
+    fig, ax = plt.subplots(figsize=(10,7))
+        
+    plt.bar(x, y, color="#d6a984")
+    
+    for s in ['top','bottom','left','right']:
+        ax.spines[s].set_visible(False)
+        
+    ax.xaxis.set_ticks_position('none')
+    ax.yaxis.set_ticks_position('none')
+        
+    ax.xaxis.set_tick_params(pad=5)
+    ax.yaxis.set_tick_params(pad=5)
+    
+    ax.grid(b=True, color='grey', linestyle='-.', linewidth=0.5, alpha=0.2)
+    
+    rects = ax.patches
+
+    for rect, label in zip(rects, y):
+        height = rect.get_height()
+        ax.text(rect.get_x() + rect.get_width() / 2, height, label, ha='center', va='bottom')
+
+    ax.set_title('Liczba zwierząt w zależności od rozmiaru', pad=10)
+    ax.set_xlabel('Wielkość')
+    ax.set_ylabel('Liczba zwierząt')
 
     imgdata = StringIO()
     fig.savefig(imgdata, format='svg')
@@ -73,14 +126,39 @@ def sizes_graph():
     return data
 
 def names_graph():
+    rcParams['font.family'] = 'sans-serif'
+    rcParams['font.sans-serif'] = ['Gill Sans']
+    rcParams['font.size'] = 14
     names = {}
     for a in get_animals():
         if a.name[:1] not in names.keys():
             names[a.name[:1]] = 0
         names[a.name[:1]] += 1
-
-    fig = plt.figure()
+        
+    fig, ax = plt.subplots(figsize=(10,7))
+        
     plt.bar(names.keys(), names.values(), color="#d6a984")
+    
+    for s in ['top','bottom','left','right']:
+        ax.spines[s].set_visible(False)
+        
+    ax.xaxis.set_ticks_position('none')
+    ax.yaxis.set_ticks_position('none')
+        
+    ax.xaxis.set_tick_params(pad=5)
+    ax.yaxis.set_tick_params(pad=5)
+    
+    ax.grid(b=True, color='grey', linestyle='-.', linewidth=0.5, alpha=0.2)
+    
+    rects = ax.patches
+
+    for rect, label in zip(rects, names.values()):
+        height = rect.get_height()
+        ax.text(rect.get_x() + rect.get_width() / 2, height, label, ha='center', va='bottom')
+
+    ax.set_title('Liczba zwierząt w zależności od pierwszej litery imienia', pad=10)
+    ax.set_xlabel('Litera')
+    ax.set_ylabel('Liczba zwierząt')
 
     imgdata = StringIO()
     fig.savefig(imgdata, format='svg')
